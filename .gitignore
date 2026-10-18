@@ -1,0 +1,29 @@
+# Track only the Noorie theme and explicitly approved Glifnode plugins.
+# WordPress core, configuration, uploads, generated files, database data,
+# WooCommerce, and other third-party extensions stay outside version control.
+
+# Ignore everything at the project root by default.
+/*
+
+# Keep this allowlist file.
+!/.gitignore
+
+# Traverse only as far as the approved wp-content locations.
+!/wordpress/
+/wordpress/*
+!/wordpress/wp-content/
+/wordpress/wp-content/*
+
+# Noorie theme.
+!/wordpress/wp-content/themes/
+/wordpress/wp-content/themes/*
+!/wordpress/wp-content/themes/noorie/
+!/wordpress/wp-content/themes/noorie/**
+
+# Plugins are denied by default. Add each verified Glifnode plugin below.
+!/wordpress/wp-content/plugins/
+/wordpress/wp-content/plugins/*
+
+# Glifnode plugin allowlist examples (uncomment and use the real folder name):
+# !/wordpress/wp-content/plugins/glifnode-plugin-name/
+# !/wordpress/wp-content/plugins/glifnode-plugin-name/**
