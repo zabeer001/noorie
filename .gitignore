@@ -1,12 +1,20 @@
-# Track only the Noorie theme and explicitly approved Glifnode plugins.
-# WordPress core, configuration, uploads, generated files, database data,
-# WooCommerce, and other third-party extensions stay outside version control.
+# Cloneable local setup plus the Noorie theme and approved Glifnode plugins.
+# WordPress core, runtime data, WooCommerce, and other third-party extensions
+# are installed after cloning and stay outside version control.
 
 # Ignore everything at the project root by default.
 /*
 
 # Keep this allowlist file.
 !/.gitignore
+!/README.md
+!/docker-compose.yaml
+!/.env.example
+
+# Never commit local secrets or machine-specific environment overrides.
+/.env
+/.env.*
+!/.env.example
 
 # Traverse only as far as the approved wp-content locations.
 !/wordpress/
