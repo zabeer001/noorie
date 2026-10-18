@@ -1,4 +1,4 @@
-# Cloneable local setup plus the Noorie theme and approved Glifnode plugins.
+# Production deployment plus the Noorie theme and approved Glifnode plugins.
 # WordPress core, runtime data, WooCommerce, and other third-party extensions
 # are installed after cloning and stay outside version control.
 
@@ -8,6 +8,7 @@
 # Keep this allowlist file.
 !/.gitignore
 !/README.md
+# Local-only Compose configuration; production uses compose.prod.yaml.
 /docker-compose.yaml
 !/compose.prod.yaml
 !/Caddyfile

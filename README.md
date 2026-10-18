@@ -1,27 +1,16 @@
 # Noorie WordPress
 
-This repository contains the local Docker setup, the production VPS deployment configuration, and the custom Noorie theme. WordPress core, uploads, WooCommerce, and other third-party plugins are intentionally not committed.
+This repository contains the production VPS deployment configuration and the custom Noorie theme. WordPress core, uploads, WooCommerce, and other third-party plugins are intentionally not committed.
 
 ## What is tracked
 
 - The custom `noorie` theme
-- Local and production Docker Compose configurations
+- Production Docker Compose configuration
 - Caddy HTTPS configuration
 - Safe environment templates
 - Glifnode plugins explicitly added to the `.gitignore` allowlist
 
 The real `.env`, WordPress core, uploads, database data, WooCommerce, default themes, and third-party plugins remain untracked.
-
-## Local development
-
-```bash
-cp .env.example .env
-nano .env
-docker compose up -d
-docker compose ps
-```
-
-Open `http://localhost:99/`, complete WordPress setup if prompted, install WooCommerce from **Plugins → Add New**, and activate **Noorie** from **Appearance → Themes**.
 
 ## Production VPS deployment
 
