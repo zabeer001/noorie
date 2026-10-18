@@ -9,12 +9,16 @@
 !/.gitignore
 !/README.md
 !/docker-compose.yaml
+!/compose.prod.yaml
+!/Caddyfile
 !/.env.example
+!/.env.production.example
 
 # Never commit local secrets or machine-specific environment overrides.
 /.env
 /.env.*
 !/.env.example
+!/.env.production.example
 
 # Traverse only as far as the approved wp-content locations.
 !/wordpress/

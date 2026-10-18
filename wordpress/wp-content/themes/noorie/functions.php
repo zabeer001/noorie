@@ -117,7 +117,7 @@ function noorie_storefront_product($product)
     $attributes = array();
     $variations = array();
 
-    if ($product->is_type('variable')) {
+    if ($product instanceof WC_Product_Variable) {
         foreach ($product->get_variation_attributes() as $attribute_name => $options) {
             $attributes[] = array(
                 'name'    => wc_attribute_label($attribute_name, $product),
@@ -127,6 +127,10 @@ function noorie_storefront_product($product)
         }
 
         foreach ($product->get_available_variations('objects') as $variation) {
+            if (! $variation instanceof WC_Product_Variation) {
+                continue;
+            }
+
             $variation_image_id = $variation->get_image_id();
             $variations[] = array(
                 'id'          => $variation->get_id(),
@@ -298,8 +302,9 @@ function noorie_add_variable_to_cart()
     $product = wc_get_product($product_id);
     $variation_product = wc_get_product($variation_id);
 
-    if (! $product || ! $product->is_type('variable') || ! $variation_product || ! $variation_product->is_type('variation') || $variation_product->get_parent_id() !== $product_id) {
+    if (! ($product instanceof WC_Product_Variable) || ! ($variation_product instanceof WC_Product_Variation) || $variation_product->get_parent_id() !== $product_id) {
         wp_send_json_error(array('message' => __('Invalid product variation.', 'noorie')), 400);
+        return;
     }
 
     $selected = array();
@@ -308,12 +313,14 @@ function noorie_add_variable_to_cart()
         $value = isset($_POST[$key]) ? wc_clean(wp_unslash($_POST[$key])) : '';
         if ('' === $value) {
             wp_send_json_error(array('message' => __('Please select every product option.', 'noorie')), 400);
+            return;
         }
         $selected[$key] = $value;
     }
 
     if (! WC()->cart->add_to_cart($product_id, 1, $variation_id, $selected)) {
         wp_send_json_error(array('message' => __('This variation could not be added to the cart.', 'noorie')), 400);
+        return;
     }
 
     do_action('woocommerce_ajax_added_to_cart', $product_id);
