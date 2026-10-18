@@ -8,7 +8,7 @@
 # Keep this allowlist file.
 !/.gitignore
 !/README.md
-!/docker-compose.yaml
+/docker-compose.yaml
 !/compose.prod.yaml
 !/Caddyfile
 !/.env.example
